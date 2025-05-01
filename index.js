@@ -1,9 +1,12 @@
-//require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -34,11 +37,26 @@ app.get('/fruits', async (req, res) => {
 });
 
 // Root endpoint
-app.get('/', (req, res) => {
-    res.json({
-        message: 'Welcome to the Fruits API',
-        usage: 'GET /fruits to get all fruits information'
-    });
+app.get('/', async (req, res) => {
+    try {
+        const response = await axios.get('https://www.fruityvice.com/api/fruit/all');
+        const fruitsData = response.data.map(fruit => ({
+            name: fruit.name,
+            family: fruit.family,
+            genus: fruit.genus,
+            nutritions: {
+                calories: fruit.nutritions.calories,
+                protein: fruit.nutritions.protein,
+                carbohydrates: fruit.nutritions.carbohydrates,
+                fat: fruit.nutritions.fat,
+                sugar: fruit.nutritions.sugar
+            }
+        }));
+        
+        res.render('index', { fruits: fruitsData });
+    } catch (error) {
+        res.status(500).render('index', { fruits: [], error: 'Error fetching fruits data' });
+    }
 });
 
 app.listen(port, () => {

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .fruits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .fruit-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .fruit-card:hover {
+            transform: translateY(-5px);
+        }
+        .fruit-name {
+            color: #e74c3c;
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+        }
+        .fruit-details {
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+        .nutrition-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .nutrition-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        .api-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>🍎 Fruits Database</h1>
+    
+    <div class="fruits-grid">
+        <% fruits.forEach(fruit => { %>
+            <div class="fruit-card">
+                <h2 class="fruit-name"><%= fruit.name %></h2>
+                <p class="fruit-details"><strong>Family:</strong> <%= fruit.family %></p>
+                <p class="fruit-details"><strong>Genus:</strong> <%= fruit.genus %></p>
+                
+                <div class="nutrition-info">
+                    <h3>Nutrition Facts</h3>
+                    <div class="nutrition-item">
+                        <span>Calories:</span>
+                        <span><%= fruit.nutritions.calories %> kcal</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span>Protein:</span>
+                        <span><%= fruit.nutritions.protein %>g</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span>Carbohydrates:</span>
+                        <span><%= fruit.nutritions.carbohydrates %>g</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span>Fat:</span>
+                        <span><%= fruit.nutritions.fat %>g</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span>Sugar:</span>
+                        <span><%= fruit.nutritions.sugar %>g</span>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <div class="api-info">
+        <h2>API Information</h2>
+        <p>This data is fetched from the Fruityvice API</p>
+        <p>To get the raw JSON data, visit: <a href="/fruits">/fruits</a></p>
+    </div>
+</body>
+</html> 
