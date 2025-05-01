@@ -6,9 +6,9 @@
 
 To-do:
 - Proposed improvements: 
-    - add a enviroment file or a config file, so it can be easy maintained (port, API URL, ...)
-    - add a view, so we can list the fruits in a visual way
-    - add a test library to check the endpoint
-    - add a single fruit endpoint (api/fruit/banana)
-    - add loging details to debug
-    - add a react page to list the fruits and the details
+    - Add an environment file or a config file to be easily maintained (port, API URL, ...)
+    - Add a view, so we can list the fruits in a visual way
+    - Add a test library to check the endpoint
+    - Add a single fruit endpoint (api/fruit/banana)
+    - Add logging details to debug
+    - Add a React page to list the fruits and the details
