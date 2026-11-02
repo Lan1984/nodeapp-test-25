@@ -1,12 +1,14 @@
 //require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Fruits endpoint
 app.get('/fruits', async (req, res) => {
@@ -33,7 +35,7 @@ app.get('/fruits', async (req, res) => {
     }
 });
 
-// Root endpoint
+// Root endpoint fallback
 app.get('/', (req, res) => {
     res.json({
         message: 'Welcome to the Fruits API',
